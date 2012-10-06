@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SimuladorPreco</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<header class="navbar navbar-fixed-top">
+	    <div class="navbar-inner">
+	      <div class="container" style="vertical-align: middle">
+	        <ul class="nav" style="vertical-align: middle">
+	        	<li><%= link_to "Simulação de Preços", "/simulacao_produtos"  %></li>
+	        	<li><%= link_to "Como Calcular", "/tutorial"  %></li>
+        	<li><a href="http://www.sebrae.com.br/momento/quero-melhorar-minha-empresa/utilize-as-ferramentas/formacao-de-precos/" target="_new">Sebrae</a></li>
+	          <li><a href="http://www.vpsa.com.br" target="_new">VPSA</a></li>
+            <li><%= button_to "Sair",  oauth_logout_path, :class => 'btn',:method => :delete , :style=> 'position:relative; top: 11px'%>
+            </li>
+	        </ul>
+	       </div>
+	      </div>
+	    </header>
+
+<%= yield %>
+
+</body>
+</html>

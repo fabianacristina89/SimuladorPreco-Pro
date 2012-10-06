@@ -1,0 +1,52 @@
+<%= form_for(@simulacao, :remote => true, :html=>{:class => "form-inline"}) do |f_simulacao| %>
+<script>
+function calcular(event, input){
+  formatar(event, input);
+
+  var total_despesas = parseCurrencyToFloat(document.getElementById('simulacao_total_despesas').value);
+  var total_receitas = parseCurrencyToFloat(document.getElementById('simulacao_total_receitas').value);
+  var resultado = (total_despesas/total_receitas*100).toFixed(2);
+  document.getElementById('simulacao_despesas_fixas').value = resultado;
+  formatar(event, document.getElementById('simulacao_despesas_fixas'));
+
+  
+  
+}
+function onSubmitForm(){
+  recalcularTabelaDePrecos(null);
+}
+</script>
+<center>
+  <table class="strapless">
+    <tr>
+	  <td style="white-space:nowrap;">
+        <%= f_simulacao.label :total_receitas, :style => 'width:130px; color:#000000'  %>
+        <div class="input-prepend"><span class="add-on">R$</span><%= f_simulacao.text_field :total_receitas,:class=>'input_valor',:style => 'width:80px;', :onkeyup=>'calcular(event,this)' %></div>
+      </td>
+      <td width='250px' style="white-space:nowrap;">
+        &nbsp;&nbsp;<%= f_simulacao.label :total_despesas, :style => 'width:130px; color:#000000' %>
+        <div class="input-prepend"><span class="add-on">R$</span><%= f_simulacao.text_field :total_despesas, :class=>'input_valor', :style => 'width:80px;',:onkeyup=>'calcular(event, this)' %></div>
+      </td>
+      <td style="white-space:nowrap;">
+        &nbsp;&nbsp;<%= f_simulacao.label :despesas_fixas, :style => 'width:130px; color:#000000'  %>
+        <div class="input-append"><%= f_simulacao.text_field :despesas_fixas ,:class=>'input_valor',:style => 'width:80px;',  :readonly => true %><span class="add-on">%</span></div>
+      </td>
+
+       <td style="white-space:nowrap;">
+           &nbsp;&nbsp;<%= f_simulacao.label :margem_lucro, :style => 'width:130px; color:#000000' %>
+            <div class="input-append"><%= f_simulacao.text_field :margem_lucro, :class=>'input_valor',:style => 'width:80px;', :onkeyup=>'formatar(event, this);' %><span class="add-on">%</span></div>
+      </td>
+      <td style="white-space:nowrap;">
+		  <div class="actions">
+		   &nbsp;&nbsp; <%= f_simulacao.submit 'salvar',:class => 'btn btn-primary', :onclick=>'onSubmitForm()'%>
+		  </div>       
+      </td>
+    </tr>
+  </table>
+</center>
+
+  
+  
+
+  
+<% end %>

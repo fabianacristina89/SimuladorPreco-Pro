@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+  </head>
+  <body>
+    <% if usuario_logado? %>
+
+      <h3>Usuario:  <%= usuario[:nome_terceiro] %></h3>
+      <%= button_to "Sair", oauth_logout_path, :class => 'btn',:method => :delete %>
+      <div align='center'>
+
+    <% else %>
+
+      <h1>O usuário ainda não autorizou seu aplicativo</h1>
+      <%= link_to oauth_authorization_path %>
+
+    <% end %>
+  		
+      
+  
+  <section>
+  
+    <p align ='center'>
+
+     
+      <%= link_to "Como Calcular?", "/tutorial", :class =>'botao_home', :style=>'color:#FFFFFF; top:180px'  %>
+       <%= link_to "Simular", "/simulacao_produtos", :class =>'botao_home', :style=>'color:#FFFFFF; top:180px '  %>
+      <p/>
+
+    	</div>
+    </section>
+
+  </body>
+  </html>
+
+
