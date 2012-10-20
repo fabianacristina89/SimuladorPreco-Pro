@@ -89,17 +89,15 @@ class SimulacaoProdutosController < ApplicationController
  # GET /simulacao_produtos
   # GET /simulacao_produtos.json
   def index
-    puts("paaaaaaaaaagina" << (!pagina_definida? or pagina_sessao == 1).to_s)
     if !pagina_definida? or pagina_sessao == 1
-      #Thread.new{atualizar_produtos_do_servico()}
-      atualizar_produtos_do_servico()
+      Thread.new{atualizar_produtos_do_servico()}
     end
 
     @simulacao  = Simulacao.find_or_create_by_base(cnpj_empresa)
     @lista_final = Array.new
     @produtos = Array.new
     @produtos = listar_produtos_sem_cache();
-    @pagina_atual = (session[:pagina_simulacao].to_i ).to_s
+    @pagina_atual = pagina_sessao.to_s
 
     
     todos = listar_simulacao_produto(@produtos, @simulacao)
