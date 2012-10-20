@@ -13,6 +13,17 @@
 
 ActiveRecord::Schema.define(:version => 20121006132042) do
 
+  create_table "despesas", :force => true do |t|
+    t.string   "base"
+    t.integer  "tipo"
+    t.string   "nome"
+    t.decimal  "valor"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "simulacao_id"
+  end
+  
+
   create_table "simulacao_produtos", :force => true do |t|
     t.decimal  "preco_compra"
     t.decimal  "icms"

@@ -45,6 +45,10 @@ class SimulacaosController < ApplicationController
   def create
     @simulacao = Simulacao.new(params[:simulacao])
     @simulacao.base = cnpj_empresa
+    
+    @simulacao.despesa.build
+    
+    
     respond_to do |format|
       if @simulacao.save
         format.html { redirect_to @simulacao, notice: 'Simulacao was successfully created.' }

@@ -43,6 +43,14 @@ function onSubmitForm(){
       </td>
     </tr>
   </table>
+
+<fieldset>
+ <%= f_simulacao.fields_for :despesas do |builder| %>
+    <%= render 'despesa_fields', f: builder %>
+  <% end %>
+<%= link_to_add_fields "Adicionar Despesa", f_simulacao, :despesas %>
+</fieldset>
+
 </center>
 
   
