@@ -26,7 +26,7 @@ function onSubmitForm(){
       <td width='250px' style="white-space:nowrap;">
         &nbsp;&nbsp;<%= f_simulacao.label :total_despesas, :style => 'width:130px; color:#000000' %>
         <div class="input-prepend"><span class="add-on">R$</span><%= f_simulacao.text_field :total_despesas, :class=>'input_valor', :style => 'width:80px;',:onkeyup=>'calcular(event, this)' %></div>
-      </td>
+      </td><td><a class="btn addIdeaBtn" data-toggle="modal" href="#addDespesas" >[...]</a></td>
       <td style="white-space:nowrap;">
         &nbsp;&nbsp;<%= f_simulacao.label :despesas_fixas, :style => 'width:130px; color:#000000'  %>
         <div class="input-append"><%= f_simulacao.text_field :despesas_fixas ,:class=>'input_valor',:style => 'width:80px;',  :readonly => true %><span class="add-on">%</span></div>
@@ -44,12 +44,23 @@ function onSubmitForm(){
     </tr>
   </table>
 
-<fieldset>
- <%= f_simulacao.fields_for :despesas do |builder| %>
-    <%= render 'despesa_fields', f: builder %>
-  <% end %>
-<%= link_to_add_fields "Adicionar Despesa", f_simulacao, :despesas %>
-</fieldset>
+	<div class="modal hide fade in" id="addDespesas">
+	  <div class="modal-header">
+	    <button class="close" data-dismiss="modal">×</button>
+	    <h3>Despesas</h3>
+	  </div>
+	  <div class="modal-body">
+
+		<fieldset>
+		 <%= f_simulacao.fields_for :despesas do |builder| %>
+		    <%= render 'despesa_fields', f: builder %>
+		  <% end %>
+		<%= link_to_add_fields "Adicionar Despesa", f_simulacao, :despesas %>
+		</fieldset>
+
+	  </div>
+	  <div class="modal-footer"> <a href="#" onclick="" class="btn" data-dismiss="modal">Fechar</a> <a href="#" onclick="" class="btn btn-primary" data-dismiss="modal">Salvar</a> </div>
+	</div>
 
 </center>
 
