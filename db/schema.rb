@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120929125921) do
+ActiveRecord::Schema.define(:version => 20121006132042) do
 
   create_table "simulacao_produtos", :force => true do |t|
     t.decimal  "preco_compra"
@@ -41,6 +41,15 @@ ActiveRecord::Schema.define(:version => 20120929125921) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.decimal  "despesas_fixas"
+  end
+
+  create_table "vpsa_produtos", :force => true do |t|
+    t.integer  "id_produto_vpsa"
+    t.string   "descricao"
+    t.decimal  "preco"
+    t.string   "documento_base"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
 end

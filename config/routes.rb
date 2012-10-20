@@ -1,4 +1,6 @@
 SimuladorPreco::Application.routes.draw do
+  resources :vpsa_produtos
+
   get "tutorial/index"
 
   get "home/index"
